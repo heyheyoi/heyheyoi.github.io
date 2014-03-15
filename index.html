@@ -4,6 +4,8 @@
   <title>celio</title>
   <meta charset='utf-8'>
 
+  <script src="js/myrand.js" type="text/javascript"></script>
+
   <!-- CSS STYLE SHEETS -->
   <link href="css/estilo.css" rel="stylesheet">
 
@@ -53,6 +55,13 @@
 
 </head>
 <body>
+  <script type="text/javascript">
+$(function() {
+    var BV = new $.BigVideo();
+    BV.init();
+    BV.show('http://vjs.zencdn.net/v/oceans.mp4',{ambient:true});
+});
+    </script>
   <div id="wrapper" class="clearfix">
     <div id="main">
       <div id="container">
