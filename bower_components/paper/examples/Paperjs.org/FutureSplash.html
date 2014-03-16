@@ -1,11 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Future Splash</title>
+	<link rel="stylesheet" href="../css/style.css">
+	<script type="text/javascript" src="../../dist/paper.js"></script>
+	<script type="text/paperscript" canvas="canvas">
+		// Code ported to Paper.js from http://the389.com/9/1/
+		// with permission.
+
 		var values = {
-			friction: 0.1,
-			timeStep: 0.9,
+			friction: 0.8,
+			timeStep: 0.01,
 			amount: 15,
-			mass: 20,
-			count: 30
+			mass: 2,
+			count: 0
 		};
-		values.invMass = 20 / values.mass;
+		values.invMass = 1 / values.mass;
 
 		var path, springs;
 		var size = view.size * [1.2, 1];
@@ -33,7 +44,7 @@
 
 		function createPath(strength) {
 			var path = new Path({
-				fillColor: '#222'
+				fillColor: 'black'
 			});
 			springs = [];
 			for (var i = 0; i <= values.amount; i++) {
@@ -66,7 +77,7 @@
 			var segment = location.segment;
 			var point = segment.point;
 
-			if (!point.fixed && location.distance < size.height / 10) {
+			if (!point.fixed && location.distance < size.height / 4) {
 				var y = event.point.y;
 				point.y += (y - point.y) / 6;
 				if (segment.previous && !segment.previous.fixed) {
@@ -85,7 +96,7 @@
 		}
 
 		function updateWave(path) {
-			var force = 0.01 - values.friction * values.timeStep * values.timeStep;
+			var force = 1 - values.friction * values.timeStep * values.timeStep;
 			for (var i = 0, l = path.segments.length; i < l; i++) {
 				var point = path.segments[i].point;
 				var dy = (point.y - point.py) * force;
@@ -98,3 +109,16 @@
 			}
 			path.smooth();
 		}
+
+		function onKeyDown(event) {
+			if (event.key == 'space') {
+				path.fullySelected = !path.fullySelected;
+				path.fillColor = path.fullySelected ? null : 'black';
+			}
+		}
+	</script>
+</head>
+<body>
+	<canvas id="canvas" resize hidpi="off"></canvas>
+</body>
+</html>

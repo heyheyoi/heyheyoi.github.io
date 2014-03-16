@@ -4,7 +4,11 @@
   <title>celio</title>
   <meta charset='utf-8'>
 
-  <script src="js/myrand.js" type="text/javascript"></script>
+    <!-- bower paths -->
+  <script type="text/javascript" src="bower_components/paper/dist/paper.js"></script>
+
+  <script type="text/paperscript" src="js/myrand.js" canvas="canvas"></script>
+  <script type="text/javascript" src="http://jonathanpuckey.com/static/rhill-voronoi-core.js"></script>
 
   <!-- CSS STYLE SHEETS -->
   <link href="css/estilo.css" rel="stylesheet">
@@ -14,13 +18,13 @@
     border:none;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
-    z-index:999;
+    z-index:9999;
     text-align:center;
   }
 
   .bk h1{
     color:#FFFFFF;
-    text-shadow: 1px 2px 1px #000000;
+    text-shadow: 4px 3px 5px #222;
     font-weight: bold;
     font-size: 44pt;
     line-height:95px;
@@ -49,29 +53,38 @@
   background-position: 50% 50%;
   vertical-align: middle;
 }
+canvas{
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  min-width:100%;
+  min-height:100%;
+  margin:0 auto;
+  z-index:-9999;
+}
 
   </style>
-
-
 </head>
 <body>
-  <script type="text/javascript">
-$(function() {
-    var BV = new $.BigVideo();
-    BV.init();
-    BV.show('http://vjs.zencdn.net/v/oceans.mp4',{ambient:true});
-});
-    </script>
+
   <div id="wrapper" class="clearfix">
     <div id="main">
       <div id="container">
+
         <div class="bk">
           <h1>Hey!<br> What are you doing here?</h1>
-          <p>Sorry, nothing new. <a href="mailto:celiopires@icloud.com?subject=celio-uiux">Contact </a>for details.</p>
-        </div>
+          <p>Sorry, nothing new. <a href="mailto:celiopires@icloud.com?subject=celio-uiux">Contact </a>for details.</p>        
+        </div><!-- bk -->
+
+        <canvas id="canvas" resize></canvas>
+
       </div><!-- container -->
     </div><!-- main -->
   </div><!-- #wrapper -->
+
+
 
 
 </body>
